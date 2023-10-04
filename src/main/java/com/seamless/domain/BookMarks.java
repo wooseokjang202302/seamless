@@ -13,4 +13,28 @@ public class BookMarks {
     private Long id;
     private Long user;
     private Long post;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getUser() {
+        return user;
+    }
+
+    public void setUser(Long user) {
+        this.user = user;
+    }
+
+    public Long getPost() {
+        return post;
+    }
+
+    public void setPost(Long post) {
+        this.post = post;
+    }
 }
