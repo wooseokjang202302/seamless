@@ -1,4 +1,4 @@
-package com.seamless.domain;
+package com.seamless.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +9,7 @@ import jakarta.persistence.Lob;
 import java.time.LocalDateTime;
 
 @Entity
-public class Posts {
+public class PostEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
