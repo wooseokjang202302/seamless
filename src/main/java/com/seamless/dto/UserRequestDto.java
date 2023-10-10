@@ -14,7 +14,6 @@ public class UserRequestDto {
     private String nickname;
     private String gender;
     private int age;
-    private int access;
 
     public String getEmail() {
         return email;
@@ -56,19 +55,11 @@ public class UserRequestDto {
         this.age = age;
     }
 
-    public int getAccess() {
-        return access;
-    }
-
     public String getPassword2() {
         return password2;
     }
 
     public void setPassword2(String password2) {
         this.password2 = password2;
-    }
-
-    public void setAccess(int access) {
-        this.access = access;
     }
 }
