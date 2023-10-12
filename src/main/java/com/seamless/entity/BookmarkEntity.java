@@ -11,8 +11,8 @@ public class BookmarkEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long user;
-    private Long post;
+    private Long userId;
+    private Long postId;
 
     public Long getId() {
         return id;
@@ -22,19 +22,19 @@ public class BookmarkEntity {
         this.id = id;
     }
 
-    public Long getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(Long user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getPost() {
-        return post;
+    public Long getPostId() {
+        return postId;
     }
 
-    public void setPost(Long post) {
-        this.post = post;
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 }
