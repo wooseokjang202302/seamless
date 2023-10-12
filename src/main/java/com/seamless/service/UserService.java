@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import javax.security.sasl.AuthenticationException;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -43,10 +41,7 @@ public class UserService {
         userEntity.setNickname(userRequestDto.getNickname());
         userEntity.setGender(userRequestDto.getGender());
         userEntity.setAge(userRequestDto.getAge());
-
-        // 한국 시간으로 created_at 저장
-        LocalDateTime koreatime = LocalDateTime.now(ZoneId.of("Asia/Seoul"));
-        userEntity.setCreated_at(koreatime);
+        userEntity.setCreated_at(LocalDateTime.now());
 
         userRepository.save(userEntity);
         return userEntity.getEmail();
@@ -70,7 +65,6 @@ public class UserService {
 
     // 계정 중복여부 확인
     private void validateDuplicateusers(UserRequestDto userRequestDto) {
-
         if(userRepository.findByEmail(userRequestDto.getEmail()).isPresent()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }

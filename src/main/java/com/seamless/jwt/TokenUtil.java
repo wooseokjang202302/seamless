@@ -20,7 +20,6 @@ public class TokenUtil {
         String accessToken = createToken(userEntity, 15 * 60 * 1000);  // 15분
         String refreshToken = createToken(userEntity, 7 * 24 * 60 * 60 * 1000);  // 7일
 
-
         return new TokenResponse(accessToken, refreshToken);
     }
 
