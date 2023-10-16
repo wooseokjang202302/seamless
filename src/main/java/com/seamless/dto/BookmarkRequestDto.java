@@ -1,15 +1,13 @@
-package com.seamless.entity;
+package com.seamless.dto;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "bookmarks")
-public class BookmarkEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BookmarkRequestDto {
+    @NotNull
     private Long id;
+    @NotNull(message = "로그인 상태를 확인해 주세요")
     private Long userId;
+    @NotNull(message = "북마크할 대상을 찾지 못했습니다.")
     private Long postId;
 
     public Long getId() {
