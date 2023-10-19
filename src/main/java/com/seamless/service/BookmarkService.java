@@ -27,7 +27,7 @@ public class BookmarkService {
 
         BookmarkEntity bookmarkEntity = new BookmarkEntity();
         bookmarkEntity.setUserId(bookmarkRequestDto.getUserId());
-        bookmarkEntity.setPostId(bookmarkRequestDto.getPostId());
+        bookmarkEntity.setCenterId(bookmarkRequestDto.getCenterId());
 
         return bookmarkRepository.save(bookmarkEntity);
     }
@@ -51,7 +51,7 @@ public class BookmarkService {
 
     // 이미 등록된 북마크인지 확인
     private void validateExistingBookmark(BookmarkRequestDto bookmarkRequestDto) {
-        if(bookmarkRepository.findByUserIdAndPostId(bookmarkRequestDto.getUserId(), bookmarkRequestDto.getPostId()).isPresent()) {
+        if(bookmarkRepository.findByUserIdAndPostId(bookmarkRequestDto.getUserId(), bookmarkRequestDto.getCenterId()).isPresent()) {
             throw new IllegalArgumentException("이미 등록된 북마크입니다.");
         }
     }

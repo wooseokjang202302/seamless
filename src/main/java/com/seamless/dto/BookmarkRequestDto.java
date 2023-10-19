@@ -8,7 +8,7 @@ public class BookmarkRequestDto {
     @NotNull(message = "로그인 상태를 확인해 주세요")
     private Long userId;
     @NotNull(message = "북마크할 대상을 찾지 못했습니다.")
-    private Long postId;
+    private Long centerId;
 
     public Long getId() {
         return id;
@@ -26,11 +26,11 @@ public class BookmarkRequestDto {
         this.userId = userId;
     }
 
-    public Long getPostId() {
-        return postId;
+    public Long getCenterId() {
+        return centerId;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
+    public void setCenterId(Long centerId) {
+        this.centerId = centerId;
     }
 }
