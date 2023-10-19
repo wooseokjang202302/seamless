@@ -1,13 +1,8 @@
-package com.seamless.entity;
+package com.seamless.dto;
 
-import jakarta.persistence.*;
+import com.seamless.entity.CenterEntity;
 
-@Entity
-@Table(name = "centers")
-public class CenterEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CenterResponseDto {
     private Long id;
     private String name;
     private String address;
@@ -115,5 +110,20 @@ public class CenterEntity {
 
     public void setHomepage(String homepage) {
         this.homepage = homepage;
+    }
+
+    public CenterResponseDto(CenterEntity entity) {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.address = entity.getAddress();
+        this.email = entity.getEmail();
+        this.tel = entity.getTel();
+        this.homepage = entity.getHomepage();
+        this.mapx = entity.getMapx();
+        this.mapy = entity.getMapy();
+        this.do_si = entity.getDo_si();
+        this.si_gun_gu = entity.getSi_gun_gu();
+        this.dong = entity.getDong();
+        this.area_etc = entity.getArea_etc();
     }
 }
