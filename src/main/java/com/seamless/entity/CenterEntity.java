@@ -1,11 +1,9 @@
 package com.seamless.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "centers")
 public class CenterEntity {
 
     @Id
@@ -16,8 +14,60 @@ public class CenterEntity {
     private String email;
     private String tel;
     private String homepage;
-    private double mapx;
-    private double mapy;
+    private Double mapx;
+    private Double mapy;
+    private String do_si;
+    private String si_gun_gu;
+    private String dong;
+    private String area_etc;
+
+    public Double getMapx() {
+        return mapx;
+    }
+
+    public void setMapx(Double mapx) {
+        this.mapx = mapx;
+    }
+
+    public Double getMapy() {
+        return mapy;
+    }
+
+    public void setMapy(Double mapy) {
+        this.mapy = mapy;
+    }
+
+    public String getDo_si() {
+        return do_si;
+    }
+
+    public void setDo_si(String do_si) {
+        this.do_si = do_si;
+    }
+
+    public String getSi_gun_gu() {
+        return si_gun_gu;
+    }
+
+    public void setSi_gun_gu(String si_gun_gu) {
+        this.si_gun_gu = si_gun_gu;
+    }
+
+    public String getDong() {
+        return dong;
+    }
+
+    public void setDong(String dong) {
+        this.dong = dong;
+    }
+
+    public String getArea_etc() {
+        return area_etc;
+    }
+
+    public void setArea_etc(String area_etc) {
+        this.area_etc = area_etc;
+    }
 
     public Long getId() {
         return id;
@@ -65,21 +115,5 @@ public class CenterEntity {
 
     public void setHomepage(String homepage) {
         this.homepage = homepage;
-    }
-
-    public double getMapx() {
-        return mapx;
-    }
-
-    public void setMapx(double mapx) {
-        this.mapx = mapx;
-    }
-
-    public double getMapy() {
-        return mapy;
-    }
-
-    public void setMapy(double mapy) {
-        this.mapy = mapy;
     }
 }
