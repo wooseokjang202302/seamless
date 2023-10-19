@@ -39,7 +39,7 @@ public class BookmarkService {
 
     // 북마크 삭제
     public ResponseEntity<String> deleteBookmark(Long userId, Long postId) {
-        Optional<BookmarkEntity> optionalBookmark = bookmarkRepository.findByUserIdAndPostId(userId, postId);
+        Optional<BookmarkEntity> optionalBookmark = bookmarkRepository.findByUserIdAndCenterId(userId, postId);
 
         if (optionalBookmark.isEmpty()) {
             throw new IllegalArgumentException("등록되지 않은 북마크입니다.");
@@ -51,7 +51,7 @@ public class BookmarkService {
 
     // 이미 등록된 북마크인지 확인
     private void validateExistingBookmark(BookmarkRequestDto bookmarkRequestDto) {
-        if(bookmarkRepository.findByUserIdAndPostId(bookmarkRequestDto.getUserId(), bookmarkRequestDto.getCenterId()).isPresent()) {
+        if(bookmarkRepository.findByUserIdAndCenterId(bookmarkRequestDto.getUserId(), bookmarkRequestDto.getCenterId()).isPresent()) {
             throw new IllegalArgumentException("이미 등록된 북마크입니다.");
         }
     }
