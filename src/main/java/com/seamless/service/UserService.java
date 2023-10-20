@@ -2,8 +2,11 @@ package com.seamless.service;
 
 import com.seamless.dto.UserRequestDto;
 import com.seamless.entity.UserEntity;
+import com.seamless.exception.NotFoundException;
+import com.seamless.exception.UnauthorizedException;
 import com.seamless.repository.UserRepository;
 import com.seamless.jwt.TokenUtil;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -61,6 +64,21 @@ public class UserService {
             throw new AuthenticationException("비밀번호가 일치하지 않습니다.");
         }
         return tokenUtil.generateToken(userEntity);
+    }
+
+    public TokenUtil.AccessTokenResponse refreshAccessToken(String refreshToken) {
+        if (!tokenUtil.validateRefreshToken(refreshToken)) {
+            throw new UnauthorizedException("리프레시 토큰이 만료되어 있습니다.");
+        }
+
+        String userId = tokenUtil.getUserIdFromRefreshToken(refreshToken);
+
+        Optional<UserEntity> userOptional = userRepository.findById(Long.parseLong(userId));
+        if (userOptional.isEmpty()) {
+            throw new NotFoundException("리프레시 토큰에서 유저를 찾지 못했습니다.");
+        }
+
+        return tokenUtil.generateAccessToken(userOptional.get());
     }
 
     // 계정 중복여부 확인
