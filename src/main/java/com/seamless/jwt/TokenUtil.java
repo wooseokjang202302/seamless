@@ -2,8 +2,8 @@ package com.seamless.jwt;
 
 import com.seamless.dto.UserRequestDto;
 import com.seamless.entity.UserEntity;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.seamless.exception.UnauthorizedException;
+import io.jsonwebtoken.*;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -23,6 +23,12 @@ public class TokenUtil {
         return new TokenResponse(accessToken, refreshToken);
     }
 
+    public AccessTokenResponse generateAccessToken(UserEntity userEntity) {
+        String accessToken = createToken(userEntity, 15 * 60 * 1000); // 15분
+
+        return new AccessTokenResponse(accessToken);
+    }
+
     private String createToken(UserEntity userEntity, long duration) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + duration);
@@ -34,6 +40,30 @@ public class TokenUtil {
                 .setExpiration(expiryDate)  // 만료일
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
+    }
+
+    public boolean validateRefreshToken(String token) {
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(SECRET_KEY)
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            return !claims.getExpiration().before(new Date());
+
+        } catch (ExpiredJwtException e) {
+            throw new UnauthorizedException("리프레시 토큰이 만료되어 있습니다.");
+        } catch (JwtException | IllegalArgumentException e) {
+            throw new UnauthorizedException("리프레시 토큰의 형식이 올바르지 않습니다.");
+        }
+    }
+
+    public String getUserIdFromRefreshToken(String refreshToken) {
+        return Jwts.parser()
+                .setSigningKey(SECRET_KEY)
+                .parseClaimsJws(refreshToken)
+                .getBody()
+                .getSubject();
     }
 
     public static class TokenResponse {
@@ -62,4 +92,19 @@ public class TokenUtil {
         }
     }
 
+    public static class AccessTokenResponse {
+        private String accessToken;
+
+        public AccessTokenResponse(String accessToken) {
+            this.accessToken = accessToken;
+        }
+
+        public String getAccessToken() {
+            return accessToken;
+        }
+
+        public void setAccessToken(String accessToken) {
+            this.accessToken = accessToken;
+        }
+    }
 }

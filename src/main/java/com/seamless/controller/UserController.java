@@ -1,6 +1,7 @@
 package com.seamless.controller;
 
 import com.seamless.dto.LoginRequestDto;
+import com.seamless.dto.RefreshTokenRequestDto;
 import com.seamless.dto.UserRequestDto;
 import com.seamless.jwt.TokenUtil;
 import com.seamless.service.UserService;
@@ -41,6 +42,12 @@ public class UserController {
     public ResponseEntity<TokenUtil.TokenResponse> login(@RequestBody LoginRequestDto loginRequestDto) throws AuthenticationException {
         TokenUtil.TokenResponse tokenResponse = userService.login(loginRequestDto.getEmail(), loginRequestDto.getPassword());
         return ResponseEntity.ok(tokenResponse);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refresh(@RequestBody RefreshTokenRequestDto request) {
+        TokenUtil.AccessTokenResponse accessTokenResponse = userService.refreshAccessToken(request.getRefreshToken());
+        return ResponseEntity.ok(accessTokenResponse);
     }
 
 }

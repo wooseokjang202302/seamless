@@ -31,6 +31,20 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(ex.getMessage());
     }
 
+    // 리프레시 토큰 만료
+    @ExceptionHandler(UnauthorizedException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ErrorResponse handleUnauthorizedException(UnauthorizedException ex) {
+        return new ErrorResponse(ex.getMessage());
+    }
+
+    // 리프레시 토큰 내 유저 식별 불가
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleNotFoundException(NotFoundException ex) {
+        return new ErrorResponse(ex.getMessage());
+    }
+
     // 그 외 일반적인 예외 처리
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception ex) {
