@@ -9,8 +9,13 @@ public class BookmarkEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
-    private Long centerId;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name = "centerId")
+    private CenterEntity center;
 
     public Long getId() {
         return id;
@@ -20,19 +25,19 @@ public class BookmarkEntity {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
-    public Long getCenterId() {
-        return centerId;
+    public CenterEntity getCenter() {
+        return center;
     }
 
-    public void setCenterId(Long postId) {
-        this.centerId = postId;
+    public void setCenter(CenterEntity center) {
+        this.center = center;
     }
 }
