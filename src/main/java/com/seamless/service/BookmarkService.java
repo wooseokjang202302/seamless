@@ -64,14 +64,14 @@ public class BookmarkService {
 
         CenterEntity center = bookmarkEntity.getCenter();
 
-        dto.setCenterId(center.getId());
-        dto.setCenterName(center.getName());
-        dto.setCenterAddress(center.getAddress());
-        dto.setCenterEmail(center.getEmail());
-        dto.setCenterTel(center.getTel());
-        dto.setCenterHomepage(center.getHomepage());
-        dto.setCenterMapx(center.getMapx());
-        dto.setCenterMapy(center.getMapy());
+        dto.setId(center.getId());
+        dto.setName(center.getName());
+        dto.setAddress(center.getAddress());
+        dto.setEmail(center.getEmail());
+        dto.setTel(center.getTel());
+        dto.setHomepage(center.getHomepage());
+        dto.setMapx(center.getMapx());
+        dto.setMapy(center.getMapy());
 
         return dto;
     }

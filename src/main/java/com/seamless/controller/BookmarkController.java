@@ -4,15 +4,12 @@ import com.seamless.dto.BookmarkRequestDto;
 import com.seamless.dto.BookmarkResponseDto;
 import com.seamless.entity.BookmarkEntity;
 import com.seamless.service.BookmarkService;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/bookmarks")
@@ -50,14 +47,14 @@ public class BookmarkController {
 
     private BookmarkResponseDto convertToResponseDto(BookmarkEntity entity) {
         BookmarkResponseDto dto = new BookmarkResponseDto();
-        dto.setCenterId(entity.getCenter().getId());
-        dto.setCenterName(entity.getCenter().getName());
-        dto.setCenterAddress(entity.getCenter().getAddress());
-        dto.setCenterEmail(entity.getCenter().getEmail());
-        dto.setCenterTel(entity.getCenter().getTel());
-        dto.setCenterHomepage(entity.getCenter().getHomepage());
-        dto.setCenterMapx(entity.getCenter().getMapx());
-        dto.setCenterMapy(entity.getCenter().getMapy());
+        dto.setId(entity.getCenter().getId());
+        dto.setName(entity.getCenter().getName());
+        dto.setAddress(entity.getCenter().getAddress());
+        dto.setEmail(entity.getCenter().getEmail());
+        dto.setTel(entity.getCenter().getTel());
+        dto.setHomepage(entity.getCenter().getHomepage());
+        dto.setMapx(entity.getCenter().getMapx());
+        dto.setMapy(entity.getCenter().getMapy());
         return dto;
     }
 }

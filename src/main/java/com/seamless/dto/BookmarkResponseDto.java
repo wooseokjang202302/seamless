@@ -1,76 +1,76 @@
 package com.seamless.dto;
 
 public class BookmarkResponseDto {
-    private Long centerId;
-    private String centerName;
-    private String centerAddress;
-    private String centerEmail;
-    private String centerTel;
-    private String centerHomepage;
-    private Double centerMapx;
-    private Double centerMapy;
+    private Long id;
+    private String name;
+    private String address;
+    private String email;
+    private String tel;
+    private String homepage;
+    private Double mapx;
+    private Double mapy;
 
-    public Long getCenterId() {
-        return centerId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCenterId(Long centerId) {
-        this.centerId = centerId;
+    public void setId(Long Id) {
+        this.id = Id;
     }
 
-    public String getCenterName() {
-        return centerName;
+    public String getName() {
+        return name;
     }
 
-    public void setCenterName(String centerName) {
-        this.centerName = centerName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCenterAddress() {
-        return centerAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCenterAddress(String centerAddress) {
-        this.centerAddress = centerAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getCenterEmail() {
-        return centerEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCenterEmail(String centerEmail) {
-        this.centerEmail = centerEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getCenterTel() {
-        return centerTel;
+    public String getTel() {
+        return tel;
     }
 
-    public void setCenterTel(String centerTel) {
-        this.centerTel = centerTel;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
-    public String getCenterHomepage() {
-        return centerHomepage;
+    public String getHomepage() {
+        return homepage;
     }
 
-    public void setCenterHomepage(String centerHomepage) {
-        this.centerHomepage = centerHomepage;
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
     }
 
-    public Double getCenterMapx() {
-        return centerMapx;
+    public Double getMapx() {
+        return mapx;
     }
 
-    public void setCenterMapx(Double centerMapx) {
-        this.centerMapx = centerMapx;
+    public void setMapx(Double mapx) {
+        this.mapx = mapx;
     }
 
-    public Double getCenterMapy() {
-        return centerMapy;
+    public Double getMapy() {
+        return mapy;
     }
 
-    public void setCenterMapy(Double centerMapy) {
-        this.centerMapy = centerMapy;
+    public void setMapy(Double mapy) {
+        this.mapy = mapy;
     }
 }
