@@ -24,10 +24,9 @@ public class BookmarkController {
 
     // 북마크 추가
     @PostMapping
-    public ResponseEntity<BookmarkResponseDto> addBookmark(@RequestBody BookmarkRequestDto bookmarkRequestDto) {
-        BookmarkEntity addedBookmark = bookmarkService.addBookmark(bookmarkRequestDto);
-        BookmarkResponseDto responseDto = convertToResponseDto(addedBookmark);
-        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+    public ResponseEntity<String> addBookmark(@RequestBody BookmarkRequestDto bookmarkRequestDto) {
+        bookmarkService.addBookmark(bookmarkRequestDto);
+        return new ResponseEntity<>("Bookmark added successfully", HttpStatus.CREATED);
     }
 
 
@@ -43,18 +42,5 @@ public class BookmarkController {
     public ResponseEntity<String> deleteBookmark(@PathVariable Long userId, @PathVariable Long centerId) {
         String message = String.valueOf(bookmarkService.deleteBookmark(userId, centerId));
         return ResponseEntity.ok(message);
-    }
-
-    private BookmarkResponseDto convertToResponseDto(BookmarkEntity entity) {
-        BookmarkResponseDto dto = new BookmarkResponseDto();
-        dto.setId(entity.getCenter().getId());
-        dto.setName(entity.getCenter().getName());
-        dto.setAddress(entity.getCenter().getAddress());
-        dto.setEmail(entity.getCenter().getEmail());
-        dto.setTel(entity.getCenter().getTel());
-        dto.setHomepage(entity.getCenter().getHomepage());
-        dto.setMapx(entity.getCenter().getMapx());
-        dto.setMapy(entity.getCenter().getMapy());
-        return dto;
     }
 }
