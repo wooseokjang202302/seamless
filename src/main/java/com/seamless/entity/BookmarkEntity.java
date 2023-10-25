@@ -9,6 +9,7 @@ public class BookmarkEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "userId")
     private UserEntity user;

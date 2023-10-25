@@ -4,15 +4,12 @@ import com.seamless.dto.BookmarkRequestDto;
 import com.seamless.dto.BookmarkResponseDto;
 import com.seamless.entity.BookmarkEntity;
 import com.seamless.service.BookmarkService;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/bookmarks")
@@ -27,10 +24,9 @@ public class BookmarkController {
 
     // 북마크 추가
     @PostMapping
-    public ResponseEntity<BookmarkResponseDto> addBookmark(@RequestBody BookmarkRequestDto bookmarkRequestDto) {
-        BookmarkEntity addedBookmark = bookmarkService.addBookmark(bookmarkRequestDto);
-        BookmarkResponseDto responseDto = convertToResponseDto(addedBookmark);
-        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
+    public ResponseEntity<String> addBookmark(@RequestBody BookmarkRequestDto bookmarkRequestDto) {
+        bookmarkService.addBookmark(bookmarkRequestDto);
+        return new ResponseEntity<>("Bookmark added successfully", HttpStatus.CREATED);
     }
 
 
@@ -46,18 +42,5 @@ public class BookmarkController {
     public ResponseEntity<String> deleteBookmark(@PathVariable Long userId, @PathVariable Long centerId) {
         String message = String.valueOf(bookmarkService.deleteBookmark(userId, centerId));
         return ResponseEntity.ok(message);
-    }
-
-    private BookmarkResponseDto convertToResponseDto(BookmarkEntity entity) {
-        BookmarkResponseDto dto = new BookmarkResponseDto();
-        dto.setCenterId(entity.getCenter().getId());
-        dto.setCenterName(entity.getCenter().getName());
-        dto.setCenterAddress(entity.getCenter().getAddress());
-        dto.setCenterEmail(entity.getCenter().getEmail());
-        dto.setCenterTel(entity.getCenter().getTel());
-        dto.setCenterHomepage(entity.getCenter().getHomepage());
-        dto.setCenterMapx(entity.getCenter().getMapx());
-        dto.setCenterMapy(entity.getCenter().getMapy());
-        return dto;
     }
 }
