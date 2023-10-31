@@ -11,16 +11,17 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private static final String[] WHITE_LIST = {
-            "/users/join",
-            "/**"
+            "/users/signup",
+            "/users/login",
+            "/centers/**",
     };
 
     @Bean
     protected SecurityFilterChain config(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(WHITE_LIST).permitAll());
+        http.csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(authorize -> authorize
+            .requestMatchers(WHITE_LIST).permitAll()
+            .anyRequest().authenticated());
         return http.build();
     }
 

@@ -26,8 +26,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/join")
-    public ResponseEntity<?> join(@Valid @RequestBody UserRequestDto userRequestDto, BindingResult result) {
+    @PostMapping("/signup")
+    public ResponseEntity<?> signUp(@Valid @RequestBody UserRequestDto userRequestDto, BindingResult result) {
         if (result.hasErrors()) {
             List<String> errors = result.getAllErrors().stream()
                     .map(ObjectError::getDefaultMessage)
@@ -35,7 +35,7 @@ public class UserController {
             return ResponseEntity.badRequest().body(errors);
         }
 
-        return ResponseEntity.ok(userService.join(userRequestDto));
+        return ResponseEntity.ok(userService.signUp(userRequestDto));
     }
 
     @PostMapping("/login")

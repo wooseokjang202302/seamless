@@ -10,7 +10,7 @@ public class UserRequestDto {
     @NotBlank(message = "비밀번호를 입력해주세요")
     private String password;
     @NotBlank(message = "비밀번호가 다릅니다, 비밀번호를 확인해주세요")
-    private String password2;
+    private String confirmPassword;
     private String nickname;
     private String gender;
     private int age;
@@ -55,11 +55,11 @@ public class UserRequestDto {
         this.age = age;
     }
 
-    public String getPassword2() {
-        return password2;
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
-    public void setPassword2(String password2) {
-        this.password2 = password2;
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

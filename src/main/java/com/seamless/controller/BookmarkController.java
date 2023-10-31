@@ -40,7 +40,6 @@ public class BookmarkController {
     // 북마크 삭제
     @DeleteMapping("/{userId}/{centerId}")
     public ResponseEntity<String> deleteBookmark(@PathVariable Long userId, @PathVariable Long centerId) {
-        String message = String.valueOf(bookmarkService.deleteBookmark(userId, centerId));
-        return ResponseEntity.ok(message);
+        return bookmarkService.deleteBookmark(userId, centerId);
     }
 }

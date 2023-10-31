@@ -7,7 +7,7 @@ public class BookmarkRequestDto {
     private Long id;
     @NotNull(message = "로그인 상태를 확인해 주세요")
     private Long userId;
-    @NotNull(message = "북마크할 대상을 찾지 못했습니다.")
+    @NotNull(message = "북마크할 대상을 찾지 못했습니다")
     private Long centerId;
 
     public Long getId() {

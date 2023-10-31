@@ -15,16 +15,22 @@ public class TokenUtil {
     @Value("${jwt.secret}")
     private String SECRET_KEY;
 
+    @Value("${token.access-token-duration}")
+    private long accessTokenDuration;
+
+    @Value("${token.refresh-token-duration}")
+    private long refreshTokenDuration;
+
 
     public TokenResponse generateToken(UserEntity userEntity) {
-        String accessToken = createToken(userEntity, 15 * 60 * 1000);  // 15분
-        String refreshToken = createToken(userEntity, 7 * 24 * 60 * 60 * 1000);  // 7일
+        String accessToken = createToken(userEntity, accessTokenDuration);  // 15분
+        String refreshToken = createToken(userEntity, refreshTokenDuration);  // 7일
 
         return new TokenResponse(accessToken, refreshToken);
     }
 
     public AccessTokenResponse generateAccessToken(UserEntity userEntity) {
-        String accessToken = createToken(userEntity, 15 * 60 * 1000); // 15분
+        String accessToken = createToken(userEntity, accessTokenDuration); // 15분
 
         return new AccessTokenResponse(accessToken);
     }

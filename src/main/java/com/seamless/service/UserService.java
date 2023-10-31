@@ -6,7 +6,6 @@ import com.seamless.exception.NotFoundException;
 import com.seamless.exception.UnauthorizedException;
 import com.seamless.repository.UserRepository;
 import com.seamless.jwt.TokenUtil;
-import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,7 @@ public class UserService {
     }
 
     // 회원가입
-    public String join(UserRequestDto userRequestDto) {
+    public String signUp(UserRequestDto userRequestDto) {
         validateDuplicateusers(userRequestDto); //중복 회원 검증
         validatepassword(userRequestDto); // 비밀번호 일치 검증
 
@@ -90,7 +89,7 @@ public class UserService {
 
     // 확인용 비밀번호 일치 확인
     private void validatepassword(UserRequestDto userRequestDto) {
-        if(!userRequestDto.getPassword().equals(userRequestDto.getPassword2())) {
+        if(!userRequestDto.getPassword().equals(userRequestDto.getConfirmPassword())) {
             throw new IllegalArgumentException("비밀번호와 확인용 비밀번호가 일치하지 않습니다.");
         }
     }
