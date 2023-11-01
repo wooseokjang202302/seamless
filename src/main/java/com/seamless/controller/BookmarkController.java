@@ -26,7 +26,7 @@ public class BookmarkController {
     @PostMapping
     public ResponseEntity<String> addBookmark(@RequestBody BookmarkRequestDto bookmarkRequestDto) {
         bookmarkService.addBookmark(bookmarkRequestDto);
-        return new ResponseEntity<>("Bookmark added successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("북마크를 추가했습니다", HttpStatus.CREATED);
     }
 
 
