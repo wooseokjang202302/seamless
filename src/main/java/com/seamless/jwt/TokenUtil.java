@@ -48,6 +48,22 @@ public class TokenUtil {
                 .compact();
     }
 
+    public boolean validateAccessToken(String token) {
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(SECRET_KEY)
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            return !claims.getExpiration().before(new Date());
+
+        } catch (ExpiredJwtException e) {
+            throw new UnauthorizedException("액세스 토큰이 만료되어 있습니다.");
+        } catch (JwtException | IllegalArgumentException e) {
+            throw new UnauthorizedException("액세스 토큰의 형식이 올바르지 않습니다.");
+        }
+    }
+
     public boolean validateRefreshToken(String token) {
         try {
             Claims claims = Jwts.parser()
